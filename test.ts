@@ -4,6 +4,8 @@ const test = (port: number, serverType: string) => {
   const timer = Date.now();
   const promises: Promise<Response>[] = [];
 
+  console.log(`Sending 10.000 requests to ${serverType} server...`);
+
   for (let i = 0; i < 10000; i++) {
     promises.push(
       fetch(`http://localhost:${port}`, {
@@ -14,7 +16,7 @@ const test = (port: number, serverType: string) => {
 
   Promise.all(promises).then((responses) => {
     console.log(
-      `Time taken to send 10000 requests to ${serverType} server: ${
+      `Time taken to send 10.000 requests to ${serverType} server: ${
         Date.now() - timer
       }ms`
     );
@@ -24,6 +26,4 @@ const test = (port: number, serverType: string) => {
   });
 };
 
-test(3000, "Bun");
-test(3001, "Express");
 test(8000, "php");
