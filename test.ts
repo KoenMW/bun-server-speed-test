@@ -1,6 +1,6 @@
 // fetch 10000 requests to the server and check the seeds directory for the files created:
 
-const test = (port: number, serverType: string) => {
+const test = async (port: number, serverType: string) => {
   const timer = Date.now();
   const promises: Promise<Response>[] = [];
 
@@ -14,7 +14,7 @@ const test = (port: number, serverType: string) => {
     );
   }
 
-  Promise.all(promises).then((responses) => {
+  return Promise.all(promises).then((responses) => {
     console.log(
       `Time taken to send 10.000 requests to ${serverType} server: ${
         Date.now() - timer
@@ -26,6 +26,14 @@ const test = (port: number, serverType: string) => {
   });
 };
 
-test(3000, "bun");
-test(3001, "express");
-test(8000, "php");
+// test each server one by one:
+
+const runTests = async () => {
+  test(3000, "bun").then(() => {
+    test(3001, "express").then(() => {
+      test(8000, "php");
+    });
+  });
+};
+
+runTests();
