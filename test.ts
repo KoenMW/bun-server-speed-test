@@ -26,4 +26,6 @@ const test = (port: number, serverType: string) => {
   });
 };
 
+test(3000, "bun");
+test(3001, "express");
 test(8000, "php");
