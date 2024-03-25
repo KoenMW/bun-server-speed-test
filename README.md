@@ -3,7 +3,7 @@
 To install dependencies:
 
 ```bash
-`npm install -g bun `
+npm install -g bun
 ```
 
 ```bash
