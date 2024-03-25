@@ -1,5 +1,5 @@
 {
-  "name": "planting-ts-bun",
+  "name": "bun-surver-speed-test",
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
@@ -18,8 +18,6 @@
     "express": "node express.js",
     "bun": "bun --hot index.ts",
     "test": "bun test.ts",
-    "install": "npm install && bun install",
-    "i": "npm run install && bun install",
     "start": "concurrently \"npm:php\" \"npm:express\" \"npm:bun\""
   }
 }

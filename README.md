@@ -1,9 +1,17 @@
-# bun testing server speed
+# bun server speed test
 
 To install dependencies:
+for macOs and Linux:
 
 ```bash
 npm install -g bun
+```
+
+for windows:
+
+```bash
+# WARNING: No stability is guaranteed on the experimental Windows builds
+powershell -c "irm bun.sh/install.ps1|iex"
 ```
 
 ```bash
@@ -20,6 +28,8 @@ bun run start
 ```bash
 bun run test
 ```
+
+To test other servers:
 
 ```bash
 bun run test --url <your_url_here>
