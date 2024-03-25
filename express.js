@@ -4,7 +4,7 @@ const port = 3001;
 
 let seeds = 0;
 
-app.get("/", (_req, res) => {
+try {app.get("/", (_req, res) => {
   console.log(`Seeds created: ${seeds}`); 
   res.send(`Seeds created: ${seeds}`);
 });
@@ -28,3 +28,8 @@ app.delete("/", (_req, res) => {
 app.listen(port, () => {
   console.log(`Express listening on localhost:${port}`);
 });
+
+  
+} catch (error) {
+  console.error("Error starting server: ", error);
+}

@@ -1,5 +1,9 @@
-const input = process.argv[2];
-console.log(`Input: ${input}`);
+function getCommandLineArg(flag: string): string | null {
+  const index = process.argv.indexOf(flag);
+  return index === -1 ? null : process.argv[index + 1];
+}
+
+const url = getCommandLineArg("--url");
 
 const test = async (url: string, serverType: string) => {
   const timer = Date.now();
@@ -25,9 +29,7 @@ const test = async (url: string, serverType: string) => {
       method: "GET",
     }).then((response) => {
       response.text().then((text) => {
-        console.log(
-          `Number of files created in seeds directory by ${serverType} server: \n${text}`
-        );
+        console.log(`Response from ${serverType} server: ${text}`);
       });
     });
   });
@@ -41,4 +43,4 @@ const runTests = () => {
   });
 };
 
-input ? test(input, "server") : runTests();
+url ? test(url, "server") : runTests();

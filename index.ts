@@ -1,18 +1,16 @@
-import fs from "node:fs";
+let seeds = 0;
 const server = Bun.serve({
   port: 3000,
   fetch(request) {
     switch (request.method) {
       case "GET":
-        const length = fs.readdirSync("bun").length;
-        fs.readdirSync("bun").forEach((file) => {
-          fs.unlinkSync(`bun/${file}`);
-        });
-        return new Response(`Deleted ${length} files`);
+        return new Response(`Seeds planted: ${seeds}`);
       case "POST":
-        const filename = `bun/${Math.random()}`;
-        Bun.write(filename, "");
+        seeds++;
         return new Response("Seed created");
+      case "DELETE":
+        seeds = 0;
+        return new Response("Seeds deleted");
       default: {
         return new Response("Method not allowed", { status: 405 });
       }
