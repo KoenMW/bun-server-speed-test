@@ -5,13 +5,15 @@ function getCommandLineArg(flag: string): string | null {
 
 const url = getCommandLineArg("--url");
 
+const totalRequests = 100000;
+
 const test = async (url: string, serverType: string) => {
   const timer = Date.now();
   const promises: Promise<Response>[] = [];
 
-  console.log(`Sending 10.000 requests to ${serverType} server...`);
+  console.log(`Sending ${totalRequests} requests to ${serverType} server...`);
 
-  for (let i = 0; i < 10000; i++) {
+  for (let i = 0; i < totalRequests; i++) {
     promises.push(
       fetch(url, {
         method: "POST",
@@ -21,7 +23,7 @@ const test = async (url: string, serverType: string) => {
 
   return Promise.all(promises).then((_responses) => {
     console.log(
-      `Time taken to send 10.000 requests to ${serverType} server: ${
+      `Time taken to send ${totalRequests} requests to ${serverType} server: ${
         Date.now() - timer
       }ms`
     );
