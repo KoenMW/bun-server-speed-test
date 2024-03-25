@@ -29,8 +29,14 @@ bun run start
 bun run test
 ```
 
-To test other servers:
+To use another server use the `--url` option. By default tries to test the bun, express and php server from the `bun run start` command
 
 ```bash
 bun run test --url <your_url_here>
+```
+
+To alter the number of requests made during the test, use the `--num` option. By default, the number of requests is set to 10000:
+
+```bash
+bun run test --num <number>
 ```
