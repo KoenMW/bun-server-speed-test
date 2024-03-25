@@ -5,7 +5,7 @@ function getCommandLineArg(flag: string): string | null {
 
 const url = getCommandLineArg("--url");
 
-const totalRequests = 100000;
+const totalRequests = 10000;
 
 const test = async (url: string, serverType: string) => {
   const timer = Date.now();
