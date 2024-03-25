@@ -15,7 +15,7 @@
   },
   "scripts": {
     "php": "php -S localhost:8000",
-    "express": "node express.js",
+    "express": "bun --hot express.js",
     "bun": "bun --hot index.ts",
     "test": "bun test.ts",
     "install": "npm install && bun install",

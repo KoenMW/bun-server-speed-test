@@ -1,26 +1,30 @@
 import express from "express";
-import fs from "fs";
 const app = express();
 const port = 3001;
 
-app.get("/", (req, res) => {
-  const files = fs.readdirSync("express");
-  files.forEach((file) => {
-    fs.unlinkSync(`express/${file}`);
-  });
-  res.send(`Deleted ${files.length} files`);
+let seeds = 0;
+
+app.get("/", (_req, res) => {
+  console.log(`Seeds created: ${seeds}`); 
+  res.send(`Seeds created: ${seeds}`);
 });
 
-app.post("/", (req, res) => {
-  const filename = `express/${Math.random()}`;
-  fs.writeFileSync(filename, "");
-  res.send("Seed created");
+app.post("/", (_req, res) => {
+  seeds++;
+  console.log(`Seeds created: ${seeds}`);
+  res.send(`Seeds created: ${seeds}`);
 });
 
-app.use((req, res) => {
-  res.status(405).send("Method not allowed");
+app.use((_req, res) => {
+  res.status(404).send("404 Not Found");
+});
+
+app.delete("/", (_req, res) => {
+  console.log("deleting seeds...")
+  seeds = 0;
+  res.send(`Seeds created: ${seeds}`);
 });
 
 app.listen(port, () => {
-  console.log(`Listening on localhost:${port}`);
+  console.log(`Express listening on localhost:${port}`);
 });
